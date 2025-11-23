@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #212225 0%, #afaeaf 100%);
+  min-height: 100vh;
+  color: #333;
+  padding: 20px;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.technologies-list {
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 0;
+  }
+  
+  body {
+    padding: 10px;
+  }
+}
