@@ -3,19 +3,44 @@ import './ProgressHeader.css';
 const ProgressHeader = ({ technologies }) => {
   const totalTechnologies = technologies.length;
   const completedTechnologies = technologies.filter(tech => tech.status === 'completed').length;
+  const inProgressTechnologies = technologies.filter(tech => tech.status === 'in-progress').length;
+  const notStartedTechnologies = technologies.filter(tech => tech.status === 'not-started').length;
+  
   const progressPercentage = totalTechnologies > 0 
     ? Math.round((completedTechnologies / totalTechnologies) * 100) 
     : 0;
 
   const getProgressColor = () => {
-    if (progressPercentage < 30) return '#808080ff';
-    if (progressPercentage < 70) return '#ffffffff';
+    if (progressPercentage < 30) return '#666';
+    if (progressPercentage < 70) return '#999';
     return '#10b981';
+  };
+
+  const getMostCommonStatus = () => {
+    const statusCounts = {
+      'completed': completedTechnologies,
+      'in-progress': inProgressTechnologies,
+      'not-started': notStartedTechnologies
+    };
+    
+    return Object.keys(statusCounts).reduce((a, b) => 
+      statusCounts[a] > statusCounts[b] ? a : b
+    );
+  };
+
+  const getStatusText = (status) => {
+    switch (status) {
+      case 'completed': return 'Изучено';
+      case 'in-progress': return 'В процессе';
+      case 'not-started': return 'Не начато';
+      default: return status;
+    }
   };
 
   return (
     <div className="progress-header">
       <h1>Трекер изучения технологий</h1>
+      
       <div className="progress-stats">
         <div className="stat-item">
           <span className="stat-number">{totalTechnologies}</span>
@@ -26,10 +51,15 @@ const ProgressHeader = ({ technologies }) => {
           <span className="stat-label">Изучено</span>
         </div>
         <div className="stat-item">
-          <span className="stat-number">{progressPercentage}%</span>
-          <span className="stat-label">Прогресc</span>
+          <span className="stat-number">{inProgressTechnologies}</span>
+          <span className="stat-label">В процессе</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-number">{notStartedTechnologies}</span>
+          <span className="stat-label">Не начато</span>
         </div>
       </div>
+
       <div className="progress-bar-container">
         <div 
           className="progress-bar"
@@ -39,10 +69,20 @@ const ProgressHeader = ({ technologies }) => {
           }}
         ></div>
       </div>
+      
+      <div className="detailed-stats">
+        <div className="stat-detail">
+          <strong>Прогресс:</strong> {progressPercentage}%
+        </div>
+        <div className="stat-detail">
+          <strong>Самая частая категория:</strong> {getStatusText(getMostCommonStatus())}
+        </div>
+      </div>
+
       <div className="progress-text">
         {progressPercentage === 100 
           ? '🎉 Поздравляем! Вы изучили все технологии!' 
-          : `Продолжайте в том же духе! Осталось изучить ${totalTechnologies - completedTechnologies} технологий.`
+          : `Продолжайте в том же духе! Осталось изучить ${notStartedTechnologies} технологий.`
         }
       </div>
     </div>

@@ -1,6 +1,6 @@
 import './TechnologyCard.css';
 
-const TechnologyCard = ({ title, description, status }) => {
+const TechnologyCard = ({ id, title, description, status, onStatusChange }) => {
   const getStatusIcon = () => {
     switch (status) {
       case 'completed':
@@ -27,8 +27,15 @@ const TechnologyCard = ({ title, description, status }) => {
     }
   };
 
+  const handleClick = () => {
+    onStatusChange(id);
+  };
+
   return (
-    <div className={`technology-card technology-card--${status}`}>
+    <div 
+      className={`technology-card technology-card--${status}`}
+      onClick={handleClick}
+    >
       <div className="technology-card__header">
         <h3 className="technology-card__title">{title}</h3>
         <span className="technology-card__status-icon">{getStatusIcon()}</span>
@@ -38,6 +45,7 @@ const TechnologyCard = ({ title, description, status }) => {
         <span className={`technology-card__status technology-card__status--${status}`}>
           {getStatusText()}
         </span>
+        <span className="technology-card__hint">Нажмите для смены статуса</span>
       </div>
     </div>
   );
