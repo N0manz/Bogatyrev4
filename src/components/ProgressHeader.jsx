@@ -27,7 +27,7 @@ const ProgressHeader = ({ technologies }) => {
         </div>
         <div className="stat-item">
           <span className="stat-number">{progressPercentage}%</span>
-          <span className="stat-label">Прогресс</span>
+          <span className="stat-label">Прогресc</span>
         </div>
       </div>
       <div className="progress-bar-container">
