@@ -1,0 +1,27 @@
+import './Modal.css'
+
+const Modal = ({ isOpen, onClose, title, children }) => {
+  if (!isOpen) return null
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
+  }
+
+  return (
+    <div className="modal-backdrop" onClick={handleBackdropClick}>
+      <div className="modal">
+        <div className="modal__header">
+          <h3 className="modal__title">{title}</h3>
+          <button className="modal__close" onClick={onClose}>×</button>
+        </div>
+        <div className="modal__content">
+          {children}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Modal
