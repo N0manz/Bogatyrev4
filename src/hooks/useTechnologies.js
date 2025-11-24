@@ -72,6 +72,33 @@ function useTechnologies() {
     );
   };
 
+  // Новая функция для получения статистики
+  const getStats = () => {
+    const completed = technologies.filter(tech => tech.status === 'completed').length;
+    const inProgress = technologies.filter(tech => tech.status === 'in-progress').length;
+    const notStarted = technologies.filter(tech => tech.status === 'not-started').length;
+    
+    // Находим самую популярную категорию
+    const categories = technologies.map(tech => tech.category);
+    const categoryCount = categories.reduce((acc, category) => {
+      acc[category] = (acc[category] || 0) + 1;
+      return acc;
+    }, {});
+    
+    const favoriteCategory = Object.keys(categoryCount).reduce((a, b) => 
+      categoryCount[a] > categoryCount[b] ? a : 'Нет данных'
+    , 'Нет данных');
+
+    return {
+      total: technologies.length,
+      completed,
+      inProgress,
+      notStarted,
+      favoriteCategory,
+      completionRate: calculateProgress()
+    };
+  };
+
   return {
     technologies,
     setTechnologies,
@@ -79,7 +106,8 @@ function useTechnologies() {
     updateNotes,
     markAllAsCompleted,
     resetAllStatuses,
-    progress: calculateProgress()
+    progress: calculateProgress(),
+    stats: getStats() // Добавляем статистику
   };
 }
 

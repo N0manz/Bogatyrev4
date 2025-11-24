@@ -1,7 +1,7 @@
 import ProgressBar from './ProgressBar';
 import './ProgressHeader.css';
 
-const ProgressHeader = ({ technologies, progress }) => {
+const ProgressHeader = ({ technologies, progress, stats }) => {
   const completedTechnologies = technologies.filter(tech => tech.status === 'completed').length;
   const inProgressTechnologies = technologies.filter(tech => tech.status === 'in-progress').length;
   const notStartedTechnologies = technologies.filter(tech => tech.status === 'not-started').length;
@@ -27,18 +27,28 @@ const ProgressHeader = ({ technologies, progress }) => {
     }
   };
 
+  const getCategoryText = (category) => {
+    switch (category) {
+      case 'backend': return 'Бэкенд';
+      case 'soft': return 'Софт-скиллы';
+      default: return category;
+    }
+  };
+
   return (
     <div className="progress-header">
-      <h1>Трекер изучения технологий</h1>
-      
-      <ProgressBar
-        progress={progress}
-        label="Общий прогресс"
-        color="#4CAF50"
-        height={20}
-        animated={true}
-        showPercentage={true}
-      />
+      <div className="progress-header-main">
+        <h1>Трекер изучения технологий</h1>
+        
+        <ProgressBar
+          progress={progress}
+          label="Общий прогресс "
+          color="var(--accent-color)"
+          height={20}
+          animated={true}
+          showPercentage={true}
+        />
+      </div>
       
       <div className="progress-stats">
         <div className="stat-item">
@@ -61,8 +71,13 @@ const ProgressHeader = ({ technologies, progress }) => {
 
       <div className="detailed-stats">
         <div className="stat-detail">
-          <strong>Самая частая категория:</strong> {getStatusText(getMostCommonStatus())}
+          <strong>Преобладающий статус:</strong> {getStatusText(getMostCommonStatus())}
         </div>
+        {stats && (
+          <div className="stat-detail">
+            <strong>Любимая категория:</strong> {getCategoryText(stats.favoriteCategory)}
+          </div>
+        )}
       </div>
 
       <div className="progress-text">

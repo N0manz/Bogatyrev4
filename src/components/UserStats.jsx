@@ -25,17 +25,6 @@ const UserStats = ({ stats }) => {
         </div>
       </div>
       
-      <div className="stats-details">
-        <div className="stat-detail">
-          <span>Прогресс:</span>
-          <span>{Math.round(stats.completionRate)}%</span>
-        </div>
-        
-        <div className="stat-detail">
-          <span>Любимая категория:</span>
-          <span>{stats.favoriteCategory}</span>
-        </div>
-      </div>
     </div>
   )
 }
