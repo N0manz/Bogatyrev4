@@ -1,203 +1,244 @@
 .technology-card {
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 10px 0;
-  background: #1a1a1a;
-  transition: all 0.3s ease;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
   cursor: pointer;
-  border-left: 4px solid #333;
+  transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
-}
-
-.technology-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #444, transparent);
 }
 
 .technology-card:hover {
   transform: translateY(-2px);
-  border-color: #555;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow);
+  border-color: var(--accent-color);
 }
 
 .technology-card--completed {
-  border-left-color: #4CAF50;
-  background: linear-gradient(135deg, #1a1a1a, #1a2a1a);
+  border-left: 4px solid #4CAF50;
 }
 
 .technology-card--in-progress {
-  border-left-color: #FF9800;
-  background: linear-gradient(135deg, #1a1a1a, #2a2a1a);
+  border-left: 4px solid #2196F3;
 }
 
 .technology-card--not-started {
-  border-left-color: #757575;
-  background: linear-gradient(135deg, #1a1a1a, #1a1a1a);
+  border-left: 4px solid #757575;
 }
 
 .technology-card__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 12px;
-}
-
-.technology-card__title {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #ffffff;
-  flex: 1;
-}
-
-.technology-card__status-icon {
-  font-size: 1.5rem;
-  margin-left: 10px;
-  filter: grayscale(0.3);
-}
-
-.technology-card__description {
-  color: #aaa;
-  margin: 0 0 15px 0;
-  line-height: 1.5;
-  font-size: 0.95rem;
-}
-
-.technology-card__footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 12px;
-  border-top: 1px solid #333;
-}
-
-.technology-card__status {
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  background: #333;
-  color: #fff;
-  border: 1px solid #444;
-}
-
-.technology-card__status--completed {
-  background: #2E7D32;
-  border-color: #4CAF50;
-}
-
-.technology-card__status--in-progress {
-  background: #EF6C00;
-  border-color: #FF9800;
-}
-
-.technology-card__status--not-started {
-  background: #424242;
-  border-color: #757575;
-}
-
-.technology-card__hint {
-  font-size: 0.75rem;
-  color: #666;
-  font-style: italic;
-}
-
-/* Анимации для смены статуса */
-.technology-card {
-  transition: all 0.3s ease, border-left-color 0.5s ease, background 0.5s ease;
-}
-
-@media (max-width: 768px) {
-  .technology-card {
-    padding: 15px;
-  }
-  
-  .technology-card__footer {
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-  }
-  
-  .technology-card__hint {
-    align-self: flex-end;
-  }
+  margin-bottom: 1rem;
 }
 
 .technology-card__info {
   flex: 1;
 }
 
+.technology-card__title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
 .technology-card__category {
-  font-size: 0.75rem;
-  color: #888;
-  background: #333;
-  padding: 2px 8px;
-  border-radius: 12px;
-  text-transform: uppercase;
-  margin-top: 4px;
   display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.technology-card__notes-btn {
-  background: #333;
-  border: 1px solid #444;
-  color: #ccc;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+.technology-card__status-icon {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.technology-card__description {
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.technology-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.technology-card__status {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
   font-size: 0.8rem;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.technology-card__notes-btn:hover {
-  background: #444;
-  color: #fff;
+.technology-card__status--completed {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.technology-card__status--in-progress {
+  background-color: #2196F3;
+  color: white;
+}
+
+.technology-card__status--not-started {
+  background-color: #757575;
+  color: white;
+}
+
+.technology-card__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.technology-card__notes-btn,
+.technology-card__resources-btn {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.technology-card__notes-btn:hover,
+.technology-card__resources-btn:hover:not(:disabled) {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.technology-card__resources-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .technology-card__notes {
-  margin-top: 15px;
-  padding: 15px;
-  background: #222;
-  border: 1px solid #333;
-  border-radius: 8px;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .technology-card__notes-textarea {
   width: 100%;
   min-height: 80px;
-  background: #2a2a2a;
-  border: 1px solid #444;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  padding: 10px;
-  color: #fff;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   font-family: inherit;
+  font-size: 0.9rem;
   resize: vertical;
-  margin-bottom: 10px;
 }
 
 .technology-card__notes-textarea:focus {
   outline: none;
-  border-color: #666;
+  border-color: var(--accent-color);
 }
 
 .technology-card__notes-close {
-  background: #444;
-  border: 1px solid #555;
-  color: #ccc;
-  padding: 6px 12px;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  cursor: pointer;
+  color: var(--text-primary);
   font-size: 0.8rem;
+  cursor: pointer;
 }
 
 .technology-card__notes-close:hover {
-  background: #555;
-  color: #fff;
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.technology-card__resources {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.technology-card__resources-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.technology-card__resources-list {
+  margin: 0 0 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.technology-card__resource-item {
+  margin-bottom: 0.5rem;
+}
+
+.technology-card__resource-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+.technology-card__resource-link:hover {
+  text-decoration: underline;
+}
+
+.technology-card__resources-close {
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.technology-card__resources-close:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.technology-card__hint {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
+/* Темная тема */
+[data-theme="dark"] .technology-card__notes-btn,
+[data-theme="dark"] .technology-card__resources-btn,
+[data-theme="dark"] .technology-card__notes-close,
+[data-theme="dark"] .technology-card__resources-close {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .technology-card__notes-btn:hover,
+[data-theme="dark"] .technology-card__resources-btn:hover:not(:disabled),
+[data-theme="dark"] .technology-card__notes-close:hover,
+[data-theme="dark"] .technology-card__resources-close:hover {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
 }

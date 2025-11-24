@@ -1,8 +1,20 @@
 import { useState } from 'react';
+import DeadlineForm from './DeadlineForm';
 import './TechnologyCard.css';
 
-const TechnologyCard = ({ technology, onStatusChange, onNotesChange }) => {
+const TechnologyCard = ({ 
+  technology, 
+  onStatusChange, 
+  onNotesChange, 
+  onFetchResources,
+  onSetDeadline,
+  onRemoveDeadline,
+  deadline,
+  deadlineError 
+}) => {
   const [showNotes, setShowNotes] = useState(false);
+  const [showResources, setShowResources] = useState(false);
+  const [loadingResources, setLoadingResources] = useState(false);
   const { id, title, description, status, notes, category } = technology;
 
   const getStatusIcon = () => {
@@ -42,6 +54,29 @@ const TechnologyCard = ({ technology, onStatusChange, onNotesChange }) => {
     onNotesChange(id, newNotes);
   };
 
+  const handleFetchResources = async (e) => {
+    e.stopPropagation();
+    
+    if (!showResources && technology.resources && technology.resources.length > 0) {
+      setShowResources(true);
+      return;
+    }
+
+    if (!technology.resources || technology.resources.length <= 2) {
+      setLoadingResources(true);
+      try {
+        await onFetchResources(technology.id);
+        setShowResources(true);
+      } catch (err) {
+        // Ошибка уже обработана в App.jsx
+      } finally {
+        setLoadingResources(false);
+      }
+    } else {
+      setShowResources(!showResources);
+    }
+  };
+
   return (
     <div 
       className={`technology-card technology-card--${status}`}
@@ -62,15 +97,25 @@ const TechnologyCard = ({ technology, onStatusChange, onNotesChange }) => {
           {getStatusText()}
         </span>
         
-        <button 
-          className="technology-card__notes-btn"
-          onClick={(e) => {
-            e.stopPropagation();
-            setShowNotes(!showNotes);
-          }}
-        >
-          📝 Заметки
-        </button>
+        <div className="technology-card__actions">
+          <button 
+            className="technology-card__notes-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowNotes(!showNotes);
+            }}
+          >
+            📝 Заметки
+          </button>
+          
+          <button 
+            className="technology-card__resources-btn"
+            onClick={handleFetchResources}
+            disabled={loadingResources}
+          >
+            {loadingResources ? '⏳' : '📚'} Ресурсы
+          </button>
+        </div>
       </div>
 
       {showNotes && (
@@ -92,6 +137,44 @@ const TechnologyCard = ({ technology, onStatusChange, onNotesChange }) => {
           </button>
         </div>
       )}
+      
+      {showResources && technology.resources && technology.resources.length > 0 && (
+        <div className="technology-card__resources" onClick={(e) => e.stopPropagation()}>
+          <h4 className="technology-card__resources-title">Ресурсы для изучения:</h4>
+          <ul className="technology-card__resources-list">
+            {technology.resources.map((resource, index) => (
+              <li key={index} className="technology-card__resource-item">
+                <a 
+                  href={resource} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="technology-card__resource-link"
+                >
+                  {resource}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <button 
+            className="technology-card__resources-close"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowResources(false);
+            }}
+          >
+            Закрыть
+          </button>
+        </div>
+      )}
+
+      {/* Добавляем форму установки сроков */}
+      <DeadlineForm
+        technology={technology}
+        onSetDeadline={onSetDeadline}
+        onRemoveDeadline={onRemoveDeadline}
+        existingDeadline={deadline}
+        error={deadlineError}
+      />
       
       <div className="technology-card__hint">Нажмите для смены статуса</div>
     </div>

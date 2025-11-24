@@ -1,38 +1,39 @@
 import useLocalStorage from './useLocalStorage';
 
 const initialTechnologies = [
-  {
-    id: 1,
-    title: 'Быть клоуном',
-    description: 'Изучение искусства быть клоуном',
-    status: 'not-started',
-    notes: '',
-    category: 'soft'
-  },
-  {
-    id: 2,
-    title: 'Алкоголизм',
-    description: 'Понарожают hr фильтров',
-    status: 'not-started',
-    notes: '',
-    category: 'backend'
-  },
-  {
-    id: 3,
-    title: 'Spring Framework',
-    description: 'Работа с Spring Framework',
-    status: 'not-started',
-    notes: '',
-    category: 'backend'
-  },
-  {
-    id: 4,
-    title: 'Обманывать HR',
-    description: 'Ну че они ставят год опыта минимум на джуна',
-    status: 'not-started',
-    notes: '',
-    category: 'soft'
-  }
+  // {
+  //   id: 1,
+  //   title: 'Быть клоуном',
+  //   description: 'Изучение искусства быть клоуном',
+  //   category: 'soft-skills',
+  //   status: 'not-started',
+  //   notes: '',
+  //   category: 'soft-skills'
+  // },
+  // {
+  //   id: 2,
+  //   title: 'Алкоголизм',
+  //   description: 'Понарожают hr фильтров',
+  //   status: 'not-started',
+  //   notes: '',
+  //   category: 'backend'
+  // },
+  // {
+  //   id: 3,
+  //   title: 'Spring Framework',
+  //   description: 'Работа с Spring Framework',
+  //   status: 'not-started',
+  //   notes: '',
+  //   category: 'backend'
+  // },
+  // {
+  //   id: 4,
+  //   title: 'Обманывать HR',
+  //   description: 'Ну че они ставят год опыта минимум на джуна',
+  //   status: 'not-started',
+  //   notes: '',
+  //   category: 'soft'
+  // }
 ];
 
 function useTechnologies() {

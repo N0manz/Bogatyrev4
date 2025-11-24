@@ -1,0 +1,100 @@
+.deadline-form {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.deadline-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.deadline-form__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.deadline-form__input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.deadline-form__input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  min-width: 0;
+}
+
+.deadline-form__input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.deadline-form__input--error {
+  border-color: #dc3545;
+}
+
+.deadline-form__submit,
+.deadline-form__remove {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--bg-primary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+  min-width: 40px;
+}
+
+.deadline-form__submit:hover {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.deadline-form__remove:hover {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.deadline-form__error {
+  color: #dc3545;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.deadline-form__info {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Улучшения для доступности */
+.deadline-form__input:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.deadline-form__submit:focus-visible,
+.deadline-form__remove:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Темная тема */
+[data-theme="dark"] .deadline-form__input--error {
+  border-color: #ff6b6b;
+}
+
+[data-theme="dark"] .deadline-form__error {
+  color: #ff6b6b;
+}
